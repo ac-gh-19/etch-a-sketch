@@ -1,6 +1,6 @@
 * {
     box-sizing: border-box;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: 0;
     padding: 0;
 }
@@ -24,6 +24,7 @@
 .tealColor {
     color: #00796B;
 }
+/* --------------------- */
 
 .gameFont {
     font-family: 'Chalkduster', 'Comic Sans MS', fantasy;
@@ -31,14 +32,24 @@
 
 .mainbody {
     display: flex;
+    flex-direction: column;
 }
 
-/* interface styling */
 .interface {
     display: flex;
-    flex-direction: column;
-    text-align: center;
+    justify-content: center;
+    align-items: center;
+    margin: auto;
+    gap: 2em;
 }
+
+.interfaceBtns {
+    border: 1px solid black;
+    border-radius: 20px;
+    padding: 3px 8px;
+}
+
+
 .gridContainer {
     display: flex;
     flex-direction: column;
@@ -48,6 +59,7 @@
     border: 3px solid black;
 }
 
+/* default styling for the pixels in grid */
 .pixel {
     flex: 1;
     aspect-ratio: 1 / 1;
@@ -55,3 +67,18 @@
     border: 1px solid black;
 }
 
+#slider {
+    -webkit-appearance: none;
+    width: 100px;
+    height: 3px;
+    background-color: gray;
+    border-radius: 3px;
+}
+
+input[type="range"]::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    width: 10px;
+    height: 20px;
+    background-color: teal;
+    border-radius: 5px;
+  }

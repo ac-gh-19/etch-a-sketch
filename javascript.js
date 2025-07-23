@@ -1,6 +1,9 @@
 let gridContainer = document.querySelector(".gridContainer");
-console.log(gridContainer);
+let pixels = document.querySelector(".pixel");
+let slider = document.querySelector("#slider");
 
+// default grid off start
+generateGridOfPixels(16);
 
 function createRowOfPixels(numInRow) {
     // creates a container where we can push divs into, this
@@ -23,5 +26,11 @@ function generateGridOfPixels(num) {
     }
 }
 
+function clearGrid() {
+    gridContainer.textContent = "";
+}
 
-
+slider.addEventListener("input", (e) => {
+    clearGrid();
+    generateGridOfPixels(e.target.value);
+})
