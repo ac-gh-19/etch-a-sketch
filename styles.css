@@ -27,3 +27,20 @@
 .gameFont {
     font-family: 'Chalkduster', 'Comic Sans MS', fantasy;
 }
+
+.gridContainer {
+    display: flex;
+    flex-direction: column;
+    width: 550px;
+    height: 550px;
+    margin: 1em auto;
+    border: 3px solid black;
+}
+
+.pixel {
+    flex: 1;
+    aspect-ratio: 1 / 1;
+    background: white;
+    border: 1px solid black;
+}
+
