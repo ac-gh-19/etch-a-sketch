@@ -1,10 +1,11 @@
 * {
     box-sizing: border-box;
-    /* border: 1px solid black; */
+    border: 1px solid black;
     margin: 0;
     padding: 0;
 }
 
+/* stylings for the title */
 .title {
     display: flex;
     justify-content: center;
@@ -26,4 +27,16 @@
 
 .gameFont {
     font-family: 'Chalkduster', 'Comic Sans MS', fantasy;
+}
+
+.mainbody {
+    display: flex;
+}
+
+/* interface styling */
+.interface {
+    display: flex;
+    flex-direction: column;
+    width: 40vw;
+    text-align: center;
 }
