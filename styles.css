@@ -1,6 +1,29 @@
 * {
     box-sizing: border-box;
-    border: 1px solid black;
+    /* border: 1px solid black; */
     margin: 0;
     padding: 0;
+}
+
+.title {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    font-size: 3em;
+}
+
+.redColor {
+    color: #D32F2F;
+}
+
+.yellowColor {
+    color: #FFEB3B;
+}
+
+.tealColor {
+    color: #00796B;
+}
+
+.gameFont {
+    font-family: 'Chalkduster', 'Comic Sans MS', fantasy;
 }
