@@ -37,7 +37,7 @@ gridBtn.addEventListener("click", (e) => {
     isGrid = !isGrid;
     let pixels = document.querySelectorAll(".pixel");
     pixels.forEach(pixel => {
-        if (!isGrid) {
+        if (isGrid) {
             pixel.style.border =  ".5px solid hsl(0, 0%, 0%, 20%)";
         } else {
             pixel.style.border = "none";
@@ -69,7 +69,7 @@ function createRowOfPixels(numInRow) {
     for (let i = 0; i < numInRow; ++i) {
         let newPixel = document.createElement("div");
         newPixel.classList.add("pixel");
-        // if (!isGrid) newPixel.style.border = "none";
+        if (!isGrid) newPixel.style.border = "none";
         row.appendChild(newPixel);
     }
     return row;
