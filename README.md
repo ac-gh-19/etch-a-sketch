@@ -1,2 +1,3 @@
 # etch-a-sketch
-Etch a Sketch project from Odin Project
+Assignment description below
+https://www.theodinproject.com/lessons/foundations-etch-a-sketch
