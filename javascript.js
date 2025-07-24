@@ -13,6 +13,20 @@ let isRandomColors = false;
 let isDrawing = true;
 let isGrid = true;
 
+const retroPixelColors = [
+    "rgba(62, 141, 207, 0.7)",   // Electric blue
+    "rgba(255, 110, 199, 0.7)",  // Neon pink
+    "rgba(0, 255, 197, 0.7)",    // Minty aqua
+    "rgba(255, 215, 0, 0.7)",    // Warm gold
+    "rgba(184, 51, 255, 0.7)",   // Bright violet
+    "rgba(255, 87, 34, 0.7)",    // Retro orange
+    "rgba(57, 255, 20, 0.7)",    // Neon green
+    "rgba(255, 20, 147, 0.7)",   // Deep pink
+    "rgba(64, 224, 208, 0.7)",   // Turquoise
+    "rgba(255, 60, 172, 0.7)"    // Flamingo pink
+];
+  
+
 drawBtn.addEventListener("click", (e) => {
     isDrawing = true;
     drawBtn.style.background = "green";
@@ -20,15 +34,15 @@ drawBtn.addEventListener("click", (e) => {
 })
 
 gridBtn.addEventListener("click", (e) => {
+    isGrid = !isGrid;
     let pixels = document.querySelectorAll(".pixel");
     pixels.forEach(pixel => {
         if (!isGrid) {
-            pixel.style.border = "1px solid hsl(0, 0%, 0%, 10%)";
+            pixel.style.border = "1px solid hsl(0, 0%, 0%, 30%)";
         } else {
             pixel.style.border = "none";
         }
     })
-    isGrid = !isGrid;
     isGrid ? gridBtn.style.background = "green" : gridBtn.style.background = "red";
 })
 
@@ -42,10 +56,7 @@ eraseBtn.addEventListener("click", (e) => {
 generateGridOfPixels(16);
 
 function getRandomColor() {
-    let r = Math.floor(Math.random() * 256);
-    let g = Math.floor(Math.random() * 256);
-    let b = Math.floor(Math.random() * 256);
-    let color = `rgb(${r}, ${g}, ${b})`;
+    let color = retroPixelColors[Math.floor(Math.random() * retroPixelColors.length)];
     return color;
 }
 
@@ -58,7 +69,7 @@ function createRowOfPixels(numInRow) {
     for (let i = 0; i < numInRow; ++i) {
         let newPixel = document.createElement("div");
         newPixel.classList.add("pixel");
-        if (!isGrid) newPixel.style.border = "none";
+        // if (!isGrid) newPixel.style.border = "none";
         row.appendChild(newPixel);
     }
     return row;
@@ -77,7 +88,7 @@ function generateGridOfPixels(num) {
         pixel.addEventListener("mouseenter", (e) => {
             if (isMouseDown) {
                 if (!isDrawing) {
-                    e.target.style.background = "white";
+                    e.target.style.background = "rgb(188, 171, 182)";
                 }
                 else if (!isRandomColors) {
                     e.target.style.background = "black";
@@ -88,7 +99,7 @@ function generateGridOfPixels(num) {
         })
         pixel.addEventListener("mousedown", (e) => {
             if (!isDrawing) {
-                e.target.style.background = "white";
+                e.target.style.background = "rgb(188, 171, 182)";
             }
             else if (!isRandomColors)  {
                 e.target.style.background = "black";
@@ -131,15 +142,17 @@ interfaceBtns.forEach(btn => {
 resetBtn.addEventListener("click", (e) => {
     let pixels = document.querySelectorAll(".pixel");
     pixels.forEach(pixel => {
-        pixel.style.background = "white";
+        pixel.style.background = "rgb(188, 171, 182)";
     })
 })
 
 colorBtn.addEventListener("click", () => {
+    drawBtn.click();
     isRandomColors = !isRandomColors;
-    isRandomColors ? colorBtn.style.background = "linear-gradient(to right, "
-    + "rgba(255, 0, 0, 0.5), rgba(255, 165, 0, 0.5),rgba(255, 255, 0, 0.5), "
-    + "rgba(0, 128, 0, 0.5), rgba(0, 0, 255, 0.5), rgba(128, 0, 128, 0.5), "
-    + "rgba(255, 105, 180, 0.5))" :
-    colorBtn.style.background = "#e7e7e7";
+    isRandomColors ? colorBtn.style.background = "linear-gradient(to right, " +
+    "rgba(62, 141, 207, 0.7), rgba(255, 110, 199, 0.7), rgba(0, 255, 197, 0.7), " +
+    "rgba(255, 215, 0, 0.7), rgba(184, 51, 255, 0.7), rgba(255, 87, 34, 0.7), " +
+    "rgba(57, 255, 20, 0.7), rgba(255, 20, 147, 0.7), rgba(64, 224, 208, 0.7), " +
+    "rgba(255, 60, 172, 0.7))"
+    : colorBtn.style.background = "#e7e7e7";
 })
