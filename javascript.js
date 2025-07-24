@@ -4,17 +4,32 @@ let resetBtn = document.querySelector("#resetBtn");
 let colorBtn = document.querySelector("#colorBtn");
 let drawBtn = document.querySelector("#drawBtn");
 let eraseBtn = document.querySelector("#eraseBtn");
+let gridBtn = document.querySelector("#gridBtn");
 let interfaceBtns = document.querySelectorAll(".interfaceBtns")
 let checkbox = document.querySelector(".colorCheckbox");
 
 let isMouseDown = false;
 let isRandomColors = false;
 let isDrawing = true;
+let isGrid = true;
 
 drawBtn.addEventListener("click", (e) => {
     isDrawing = true;
     drawBtn.style.background = "green";
     eraseBtn.style.background = "red";
+})
+
+gridBtn.addEventListener("click", (e) => {
+    let pixels = document.querySelectorAll(".pixel");
+    pixels.forEach(pixel => {
+        if (!isGrid) {
+            pixel.style.border = "1px solid hsl(0, 0%, 0%, 10%)";
+        } else {
+            pixel.style.border = "none";
+        }
+    })
+    isGrid = !isGrid;
+    isGrid ? gridBtn.style.background = "green" : gridBtn.style.background = "red";
 })
 
 eraseBtn.addEventListener("click", (e) => {
@@ -43,6 +58,7 @@ function createRowOfPixels(numInRow) {
     for (let i = 0; i < numInRow; ++i) {
         let newPixel = document.createElement("div");
         newPixel.classList.add("pixel");
+        if (!isGrid) newPixel.style.border = "none";
         row.appendChild(newPixel);
     }
     return row;
