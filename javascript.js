@@ -2,8 +2,26 @@ let gridContainer = document.querySelector(".gridContainer");
 let slider = document.querySelector("#slider");
 let resetBtn = document.querySelector("#resetBtn");
 let colorBtn = document.querySelector("#colorBtn");
-let mouseDown = false;
-let randomColors = false;
+let drawBtn = document.querySelector("#drawBtn");
+let eraseBtn = document.querySelector("#eraseBtn");
+let interfaceBtns = document.querySelectorAll(".interfaceBtns")
+let checkbox = document.querySelector(".colorCheckbox");
+
+let isMouseDown = false;
+let isRandomColors = false;
+let isDrawing = true;
+
+drawBtn.addEventListener("click", (e) => {
+    isDrawing = true;
+    drawBtn.style.background = "green";
+    eraseBtn.style.background = "red";
+})
+
+eraseBtn.addEventListener("click", (e) => {
+    isDrawing = false;
+        drawBtn.style.background = "red";
+        eraseBtn.style.background = "green";
+})
 
 // default grid off start
 generateGridOfPixels(16);
@@ -41,8 +59,11 @@ function generateGridOfPixels(num) {
     // adds event listener for each pixel to highlight when hovered/clicked
     pixels.forEach(pixel => {
         pixel.addEventListener("mouseenter", (e) => {
-            if (mouseDown) {
-                if (!randomColors) {
+            if (isMouseDown) {
+                if (!isDrawing) {
+                    e.target.style.background = "white";
+                }
+                else if (!isRandomColors) {
                     e.target.style.background = "black";
                 } else {
                     e.target.style.background = getRandomColor();
@@ -50,7 +71,10 @@ function generateGridOfPixels(num) {
             }
         })
         pixel.addEventListener("mousedown", (e) => {
-            if (!randomColors)  {
+            if (!isDrawing) {
+                e.target.style.background = "white";
+            }
+            else if (!isRandomColors)  {
                 e.target.style.background = "black";
             } else {
                 e.target.style.background = getRandomColor();
@@ -69,11 +93,23 @@ slider.addEventListener("input", (e) => {
 })
 
 document.addEventListener("mousedown", (e) => {
-    mouseDown = true;
+    isMouseDown
+ = true;
 })
 
 document.addEventListener("mouseup", (e) => {
-    mouseDown = false;
+    isMouseDown
+ = false;
+})
+
+interfaceBtns.forEach(btn => {
+    btn.addEventListener("mousedown", (e) => {
+        e.target.style.boxShadow = "0px 0px 6px 1px gray";
+    })
+    
+    btn.addEventListener("mouseup", (e) => {
+        e.target.style.boxShadow = "none";
+    })
 })
 
 resetBtn.addEventListener("click", (e) => {
@@ -84,5 +120,10 @@ resetBtn.addEventListener("click", (e) => {
 })
 
 colorBtn.addEventListener("click", () => {
-    randomColors ? randomColors = false : randomColors = true;
+    isRandomColors = !isRandomColors;
+    isRandomColors ? colorBtn.style.background = "linear-gradient(to right, "
+    + "rgba(255, 0, 0, 0.5), rgba(255, 165, 0, 0.5),rgba(255, 255, 0, 0.5), "
+    + "rgba(0, 128, 0, 0.5), rgba(0, 0, 255, 0.5), rgba(128, 0, 128, 0.5), "
+    + "rgba(255, 105, 180, 0.5))" :
+    colorBtn.style.background = "#e7e7e7";
 })
