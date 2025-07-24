@@ -38,7 +38,7 @@ gridBtn.addEventListener("click", (e) => {
     let pixels = document.querySelectorAll(".pixel");
     pixels.forEach(pixel => {
         if (!isGrid) {
-            pixel.style.border = "1px solid hsl(0, 0%, 0%, 30%)";
+            pixel.style.border =  ".5px solid hsl(0, 0%, 0%, 20%)";
         } else {
             pixel.style.border = "none";
         }
